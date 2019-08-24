@@ -1,0 +1,23 @@
+{
+  "name": "clipper",
+  "version": "1.0.0",
+  "description": "A opensource clipboard manager in mac",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alburthoffman/Clipper.git"
+  },
+  "author": "Alburt Hoffman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alburthoffman/Clipper/issues"
+  },
+  "homepage": "https://github.com/alburthoffman/Clipper#readme",
+  "devDependencies": {
+    "electron": "^6.0.4"
+  }
+}
