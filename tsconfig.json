@@ -1,0 +1,14 @@
+{
+    "files": [
+        "src/main.ts"
+    ],
+    "include": [
+        "src/**/*.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "es5",
+        "sourceMap": true,
+        "outDir": "dist",
+    }
+}
