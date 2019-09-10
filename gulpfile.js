@@ -1,18 +1,19 @@
 var gulp = require('gulp');
-var ts = require('gulp-typescript');
-var tsProject = ts.createProject('tsconfig.json');
+
+var clean = require('gulp-clean');
+
 var paths = {
-    pages: ['src/components/ui/*.html', 'src/components/ui/*.png']
+    pages: ['src/**']
 };
 
-gulp.task('copy-html', function () {
-    return gulp.src(paths.pages)
-        .pipe(gulp.dest('dist/ui'));
+gulp.task('clean', function () {
+    return gulp.src('dist/', {read: false})
+        .pipe(clean());
 });
 
-gulp.task('default', gulp.series(gulp.parallel('copy-html'), function () {
-    return tsProject.src()
-        .pipe(tsProject())
-        .js
-        .pipe(gulp.dest('dist'));
-}));
+gulp.task('copy-files', function () {
+    return gulp.src(paths.pages)
+        .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('default', gulp.series(gulp.parallel('copy-files')));

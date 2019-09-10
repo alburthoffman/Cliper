@@ -27,7 +27,7 @@ function bootstrap() {
       }
     })
   
-    win.loadFile('dist/ui/index.html')
+    win.loadFile('dist/components/ui/index.html')
   })
 
   globalShortcut.register('Cmd+Ctrl+Alt+Shift+X', () => {
@@ -35,7 +35,7 @@ function bootstrap() {
     app.quit()
   })
 
-  let tray = new Tray('dist/ui/icon.png')
+  let tray = new Tray('dist/components/ui/icon.png')
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Item1', type: 'radio' },
     { label: 'Item2', type: 'radio' },
