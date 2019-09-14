@@ -1,22 +1,33 @@
 const clipboard = require('electron-clipboard-extended')
 const electron = require('electron')
-const { app, BrowserWindow, globalShortcut, Menu, Tray } = electron
-//const store = require('clipstore/store')
+const { app, BrowserWindow, globalShortcut, Menu, Tray, ipcMain } = electron
+const store = require('./components/models/clipstore')
+
+clipstore = new store.Store(3)
 
 function bootstrap() {
   clipboard.on('text-changed', () => {
     let currentText = clipboard.readText('clipboard')
-    console.log(currentText)
+    clipstore.push(currentText)
+    console.log(clipstore.toString())
   })
   .on('image-changed', () => {
     let currentIMage = clipboard.readImage()
-    console.log(currentIMage.getSize())
+    clipstore.push(currentIMage)
+    console.log(clipstore.toString())
   })
   .startWatching()
 
+  let win = null;
+
   globalShortcut.register('Cmd+Ctrl+Alt+Shift+`', () => {
     let {x, y} = electron.screen.getCursorScreenPoint()
-    let win = new BrowserWindow({
+
+    if (win != null) {
+      win.close();
+    }
+
+    win = new BrowserWindow({
       title: "Clipper",
       x: x,
       y: y,
@@ -28,7 +39,18 @@ function bootstrap() {
     })
   
     win.loadFile('dist/components/ui/index.html')
+
+    win.webContents.on('did-finish-load', function() {
+      win.webContents.send('clip-show-items', {a:1,b:2});
+    })
   })
+
+  globalShortcut.register('esc', () => {
+    if (win != null) {
+      win.close();
+    }
+    win = null;
+  });
 
   globalShortcut.register('Cmd+Ctrl+Alt+Shift+X', () => {
     clipboard.stopWatching()
