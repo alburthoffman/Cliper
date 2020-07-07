@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/alburthoffman/Clipper#readme",
   "devDependencies": {
-    "electron": "^6.0.4",
+    "electron": "^9.1.0",
     "electron-clipboard-extended": "^1.1.1",
     "gulp": "^4.0.0",
     "gulp-clean": "^0.4.0",
